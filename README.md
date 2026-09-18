@@ -78,66 +78,87 @@ As the lab progresses, this repository will grow with new concepts, experiments,
 
 ---
 
-## 🏗️ Current Project Architecture
+## 🏗️ Project Architecture
 
-The current Django project follows a simple project/app structure:
+The repository currently contains **one Django project** with separate Django applications.
+
+### 📁 Repository Structure
 
 \`\`\`text
-Software-Engineering-Lab/
+📦 Software-Engineering-Lab
 │
-├── README.md
+├── 📄 README.md
 │
-└── Software Engineering/
+└── 📂 Software Engineering
     │
-    ├── manage.py
-    ├── db.sqlite3
-    ├── myapp.py
+    ├── ⚙️ manage.py
+    ├── 🗄️ db.sqlite3
+    ├── 🐍 myapp.py
     │
-    ├── student/                  # Django project configuration
-    │   ├── __init__.py
-    │   ├── settings.py
-    │   ├── urls.py
-    │   ├── asgi.py
-    │   └── wsgi.py
+    ├── 📦 student/                  ← Django project configuration
+    │   ├── ⚙️ settings.py
+    │   ├── 🔗 urls.py
+    │   ├── 🚀 asgi.py
+    │   └── 🚀 wsgi.py
     │
-    ├── result/                   # Main application
-    │   ├── __init__.py
-    │   ├── admin.py
-    │   ├── apps.py
-    │   ├── models.py
-    │   ├── serializer.py
-    │   ├── views.py
-    │   ├── tests.py
-    │   └── migrations/
+    ├── 📦 result/                   ← Main learning/API application
+    │   ├── 🗃️ models.py
+    │   ├── 👁️ views.py
+    │   ├── 🔄 serializer.py
+    │   ├── 🛠️ admin.py
+    │   ├── ⚙️ apps.py
+    │   ├── 🧪 tests.py
+    │   └── 📂 migrations/
     │
-    └── registration/             # Registration-related application space
-        ├── __init__.py
-        ├── admin.py
-        ├── apps.py
-        ├── models.py
-        ├── tests.py
-        └── views.py
+    └── 📦 registration/             ← Registration-related application
+        ├── 🛠️ admin.py
+        ├── ⚙️ apps.py
+        ├── 🗃️ models.py
+        ├── 👁️ views.py
+        └── 🧪 tests.py
 \`\`\`
 
-### 🔍 What Each Important File Does
+### 🧭 Project vs App
+
+| Component | Role |
+|---|---|
+| 📦 student/ | Main Django project: configuration, settings and root URL routing |
+| 📦 result/ | Main app used for student data, serializers and REST API practice |
+| 📦 registration/ | Separate app reserved for registration-related work |
+| ⚙️ manage.py | Command-line entry point for Django management tasks |
+| 🗄️ db.sqlite3 | Local SQLite database |
+
+### 🔍 File Responsibilities
 
 | File | Responsibility |
 |---|---|
-| \`manage.py\` | Command-line utility for managing the Django project |
-| \`settings.py\` | Project configuration and installed applications |
-| \`urls.py\` | Maps URLs to Django views |
-| \`models.py\` | Defines database models |
-| \`views.py\` | Handles requests and returns responses |
-| \`serializer.py\` | Converts model/data objects to and from JSON-compatible data |
-| \`admin.py\` | Registers models with Django Admin |
-| \`migrations/\` | Stores database schema changes |
-| \`db.sqlite3\` | Local SQLite database used during development |
+| ⚙️ settings.py | Installed apps, middleware, database and project configuration |
+| 🔗 urls.py | Maps incoming URLs to views |
+| 👁️ views.py | Processes requests and creates responses |
+| 🗃️ models.py | Defines database models |
+| 🔄 serializer.py | Converts data between Python/model objects and JSON-compatible data |
+| 🛠️ admin.py | Registers models with Django Admin |
+| 📂 migrations/ | Tracks database schema changes |
+| 🧪 tests.py | Space for automated tests |
 
----
+## 🧩 Data Model
 
-## 🧩 Current Data Model
+The current database exercise uses a simple **Student** entity. It is intentionally small so we can focus on Django Models, ORM operations, serialization and CRUD before introducing relationships.
 
-One of the current learning examples is a **Student** model:
+### 👨‍🎓 Student
+
+\`\`\`text
+┌────────────────────────────────────┐
+│          👨‍🎓  STUDENT             │
+├────────────────────────────────────┤
+│ 🔑 id       INTEGER     Primary Key│
+│ 👤 name     VARCHAR(255)           │
+│ 🔢 roll     INTEGER                │
+│ 📚 section  VARCHAR(20)            │
+└────────────────────────────────────┘
+\`\`\`
+
+### 🐍 Django Model
 
 \`\`\`python
 class Student(models.Model):
@@ -146,20 +167,32 @@ class Student(models.Model):
     section = models.CharField(max_length=20)
 \`\`\`
 
-Conceptually:
+### 🧱 Field Reference
+
+| Field | Type | Description |
+|---|---|---|
+| 🔑 id | Auto-generated | Unique primary key |
+| 👤 name | CharField(255) | Student name |
+| 🔢 roll | IntegerField | Student roll number |
+| 📚 section | CharField(20) | Student section |
+
+### 🔄 Data Flow
 
 \`\`\`text
-Student
-│
-├── id        → Automatically generated primary key
-├── name      → Student name
-├── roll      → Student roll number
-└── section   → Student section
+📥 Request
+   ↓
+🔄 Serializer
+   ↓
+✅ Validation
+   ↓
+🗃️ Student Model
+   ↓
+🗄️ SQLite
+   ↓
+📤 JSON Response
 \`\`\`
 
-This simple model is used to practice database operations and REST API development.
-
----
+This model is the foundation for the current **GET, POST, PUT, PATCH and DELETE** practice.
 
 ## 🌐 Current API Endpoints
 
