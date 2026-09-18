@@ -5,86 +5,139 @@
   <img src="https://img.shields.io/badge/Django-6.1-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django">
   <img src="https://img.shields.io/badge/Django%20REST%20Framework-API-A30000?style=for-the-badge&logo=django&logoColor=white" alt="Django REST Framework">
   <img src="https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite">
-  <img src="https://img.shields.io/badge/Learning-Project-8A2BE2?style=for-the-badge" alt="Learning Project">
 </p>
 
 <p align="center">
-  <b>A practical collection of work, experiments, and implementations from our Software Engineering Lab.</b>
+  <b>A practical learning repository for our Software Engineering Lab.</b>
   <br>
-  <sub>Learning Django by building — one concept at a time.</sub>
+  <sub>Learning Django by building, testing, debugging, and improving one concept at a time.</sub>
 </p>
+
+---
+
+## 📑 Table of Contents
+
+| # | Section | What you'll find |
+|:---:|:---|:---|
+| 01 | 📌 [About](#-about-this-repository) | Purpose and learning philosophy |
+| 02 | 🧠 [Learning Areas](#-what-we-are-learning) | Django, database, REST API and CRUD |
+| 03 | 🏗️ [Architecture](#️-project-architecture) | Project structure and responsibilities |
+| 04 | 🧩 [Data Model](#-data-model) | Student entity and database flow |
+| 05 | 🌐 [API](#-current-api-endpoints) | Current routes and operations |
+| 06 | 🔄 [API Flow](#-how-the-current-api-flow-works) | Request-to-response lifecycle |
+| 07 | 🛠️ [Tech Stack](#️-technology-stack) | Tools and technologies |
+| 08 | 🚀 [Setup](#-running-the-project-locally) | Run the project locally |
+| 09 | 🧪 [Commands](#-useful-django-commands) | Common Django commands |
+| 10 | 📚 [Method](#-learning-method) | How the lab is practiced |
+| 11 | 🗺️ [Roadmap](#️-learning-roadmap) | Current and upcoming topics |
+| 12 | 🧹 [Repository Hygiene](#-repository-hygiene) | Keeping the repository clean |
+| 13 | ⚠️ [Development Notes](#️-development-notes) | Security and development notes |
+| 14 | 🎯 [Purpose](#-purpose-of-this-repository) | Why this repository exists |
 
 ---
 
 ## 📌 About This Repository
 
-This repository contains the code and practical work completed during our **Software Engineering Lab**, with a current focus on learning **Django** and backend web development.
+> 🎓 **Academic Learning Repository**
 
-The goal is not just to memorize Django commands, but to understand how a Django application is structured and how the different parts work together:
+This repository contains the practical work, experiments, and implementations from our **Software Engineering Lab**, with a current focus on **Django and backend web development**.
 
-**Request → URL → View → Serializer/Model → Database → Response**
+The goal is to understand **how Django works internally and how its components connect**, rather than simply memorizing commands.
 
-As the lab progresses, this repository will grow with new concepts, experiments, APIs, database operations, and mini-project implementations.
+### 🔗 Core Learning Flow
 
-> 🎓 **Academic Learning Repository**  
-> This is primarily a learning and lab-work repository. Code may evolve, be refactored, or intentionally remain simple while concepts are being learned.
+```text
+📥 Request
+   │
+   ▼
+🔗 URL Routing
+   │
+   ▼
+👁️ View
+   │
+   ├──────────────► 🔄 Serializer
+   │                      │
+   ▼                      ▼
+🗃️ Model ◄────────── Validation
+   │
+   ▼
+🗄️ Database
+   │
+   ▼
+📤 Response
+```
+
+> 💡 **Learning philosophy:** Keep the implementation simple enough to understand, then gradually make it more structured and production-ready.
 
 ---
 
 ## 🧠 What We Are Learning
 
-### 🐍 Python & Django Fundamentals
+### 🐍 Django Fundamentals
+
+<table>
+<tr>
+<td width="50%">
+
+**⚙️ Project Basics**
+
 - Django project structure
 - Django applications
-- \`manage.py\`
-- Settings and configuration
+- `manage.py`
+- Settings & configuration
 - URL routing
 - Views
-- Models
 - Django Admin
-- SQLite database
-- Database migrations
 
-### 🗄️ Database & ORM
+</td>
+<td width="50%">
+
+**🗃️ Database Basics**
+
 - Django Models
 - Model fields
-- Creating database tables through migrations
-- Querying objects with Django ORM
-- Creating, retrieving, updating and deleting records
-- Working with SQLite
+- Migrations
+- Django ORM
+- SQLite
+- CRUD database operations
+
+</td>
+</tr>
+</table>
 
 ### 🔌 REST API Development
-- Django REST Framework
-- Serializers
-- JSON serialization
-- JSON parsing
-- HTTP methods
-- CRUD operations
-- Request/response handling
-- \`JSONRenderer\`
-- \`JSONParser\`
-- CSRF handling for API-style requests
 
-### 🔄 CRUD Operations
+| Concept | What we practice |
+|:---|:---|
+| 🔄 Serializers | Python/model data ↔ JSON-compatible data |
+| 📡 HTTP | Understanding request methods |
+| 📦 JSON | Request and response data |
+| 🧩 CRUD | Create, Read, Update, Delete |
+| 🖥️ API Views | Processing API requests |
+| 🛡️ CSRF | Handling API-style requests |
+| 🧰 DRF | Django REST Framework fundamentals |
 
-| Operation | HTTP Method | Purpose |
-|---|---|---|
-| Create | \`POST\` | Add a new student |
-| Read One | \`GET\` | Retrieve one student |
-| Read All | \`GET\` | Retrieve all students |
-| Update | \`PUT\` | Replace/update student data |
-| Partial Update | \`PATCH\` | Update selected fields |
-| Delete | \`DELETE\` | Remove a student |
+### 🔄 CRUD at a Glance
+
+| Operation | Method | Purpose |
+|:---:|:---:|:---|
+| 🟢 Create | `POST` | Add a student |
+| 🔵 Read | `GET` | Retrieve student data |
+| 🟡 Update | `PUT` | Update/replace data |
+| 🟠 Partial Update | `PATCH` | Update selected fields |
+| 🔴 Delete | `DELETE` | Remove a student |
 
 ---
 
 ## 🏗️ Project Architecture
 
-The repository currently contains **one Django project** with separate Django applications.
+> 🧭 **One Django project → Multiple Django applications → Separate responsibilities**
+
+The repository currently contains **one Django project** with separate Django applications used for different learning areas.
 
 ### 📁 Repository Structure
 
-\`\`\`text
+```text
 📦 Software-Engineering-Lab
 │
 ├── 📄 README.md
@@ -95,13 +148,13 @@ The repository currently contains **one Django project** with separate Django ap
     ├── 🗄️ db.sqlite3
     ├── 🐍 myapp.py
     │
-    ├── 📦 student/                  ← Django project configuration
+    ├── 📦 student/                         ← ⚙️ Django project
     │   ├── ⚙️ settings.py
     │   ├── 🔗 urls.py
     │   ├── 🚀 asgi.py
     │   └── 🚀 wsgi.py
     │
-    ├── 📦 result/                   ← Main learning/API application
+    ├── 📦 result/                          ← 🧩 Main learning/API app
     │   ├── 🗃️ models.py
     │   ├── 👁️ views.py
     │   ├── 🔄 serializer.py
@@ -110,296 +163,349 @@ The repository currently contains **one Django project** with separate Django ap
     │   ├── 🧪 tests.py
     │   └── 📂 migrations/
     │
-    └── 📦 registration/             ← Registration-related application
+    └── 📦 registration/                    ← 📝 Registration app
         ├── 🛠️ admin.py
         ├── ⚙️ apps.py
         ├── 🗃️ models.py
         ├── 👁️ views.py
         └── 🧪 tests.py
-\`\`\`
+```
 
-### 🧭 Project vs App
+### 🧭 Project vs Application
 
-| Component | Role |
-|---|---|
-| 📦 student/ | Main Django project: configuration, settings and root URL routing |
-| 📦 result/ | Main app used for student data, serializers and REST API practice |
-| 📦 registration/ | Separate app reserved for registration-related work |
-| ⚙️ manage.py | Command-line entry point for Django management tasks |
-| 🗄️ db.sqlite3 | Local SQLite database |
+<table>
+<thead>
+<tr>
+<th>🏷️ Type</th>
+<th>📦 Component</th>
+<th>🎯 Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⚙️ Project</td>
+<td><code>student/</code></td>
+<td>Global configuration, settings and root URL routing</td>
+</tr>
+<tr>
+<td>🧩 Application</td>
+<td><code>result/</code></td>
+<td>Student data, serializers and REST API practice</td>
+</tr>
+<tr>
+<td>🧩 Application</td>
+<td><code>registration/</code></td>
+<td>Registration-related functionality</td>
+</tr>
+<tr>
+<td>🚀 Utility</td>
+<td><code>manage.py</code></td>
+<td>Django command-line management</td>
+</tr>
+<tr>
+<td>🗄️ Database</td>
+<td><code>db.sqlite3</code></td>
+<td>Local development database</td>
+</tr>
+</tbody>
+</table>
 
 ### 🔍 File Responsibilities
 
-| File | Responsibility |
-|---|---|
-| ⚙️ settings.py | Installed apps, middleware, database and project configuration |
-| 🔗 urls.py | Maps incoming URLs to views |
-| 👁️ views.py | Processes requests and creates responses |
-| 🗃️ models.py | Defines database models |
-| 🔄 serializer.py | Converts data between Python/model objects and JSON-compatible data |
-| 🛠️ admin.py | Registers models with Django Admin |
-| 📂 migrations/ | Tracks database schema changes |
-| 🧪 tests.py | Space for automated tests |
+<table>
+<tr>
+<th>📄 File</th>
+<th>🎯 Responsibility</th>
+</tr>
+<tr><td><code>settings.py</code></td><td>Project configuration, installed apps, middleware and database settings</td></tr>
+<tr><td><code>urls.py</code></td><td>Maps incoming URLs to views</td></tr>
+<tr><td><code>views.py</code></td><td>Receives requests and returns responses</td></tr>
+<tr><td><code>models.py</code></td><td>Defines database models</td></tr>
+<tr><td><code>serializer.py</code></td><td>Converts model/Python data into JSON-compatible representations</td></tr>
+<tr><td><code>admin.py</code></td><td>Registers models with Django Admin</td></tr>
+<tr><td><code>apps.py</code></td><td>Application configuration</td></tr>
+<tr><td><code>migrations/</code></td><td>Tracks database schema changes</td></tr>
+<tr><td><code>tests.py</code></td><td>Place for automated tests</td></tr>
+</table>
+
+---
 
 ## 🧩 Data Model
 
-The current database exercise uses a simple **Student** entity. It is intentionally small so we can focus on Django Models, ORM operations, serialization and CRUD before introducing relationships.
+> 👨‍🎓 The current database exercise intentionally uses a small **Student** entity so that we can focus on Models, ORM, serialization and CRUD before introducing relationships.
 
-### 👨‍🎓 Student
+### 🗃️ Student Entity
 
-\`\`\`text
-┌────────────────────────────────────┐
-│          👨‍🎓  STUDENT             │
-├────────────────────────────────────┤
-│ 🔑 id       INTEGER     Primary Key│
-│ 👤 name     VARCHAR(255)           │
-│ 🔢 roll     INTEGER                │
-│ 📚 section  VARCHAR(20)            │
-└────────────────────────────────────┘
-\`\`\`
+```text
+┌──────────────────────────────────────┐
+│             👨‍🎓 STUDENT             │
+├──────────────────────────────────────┤
+│ 🔑 id       → Auto-generated PK      │
+│ 👤 name     → VARCHAR(255)           │
+│ 🔢 roll     → INTEGER                │
+│ 📚 section  → VARCHAR(20)            │
+└──────────────────────────────────────┘
+```
 
 ### 🐍 Django Model
 
-\`\`\`python
+```python
 class Student(models.Model):
     name = models.CharField(max_length=255)
     roll = models.IntegerField()
     section = models.CharField(max_length=20)
-\`\`\`
+```
 
 ### 🧱 Field Reference
 
-| Field | Type | Description |
-|---|---|---|
-| 🔑 id | Auto-generated | Unique primary key |
-| 👤 name | CharField(255) | Student name |
-| 🔢 roll | IntegerField | Student roll number |
-| 📚 section | CharField(20) | Student section |
+| Field | Django Type | Purpose |
+|:---|:---|:---|
+| 🔑 `id` | Auto-generated | Unique primary key |
+| 👤 `name` | `CharField(255)` | Student's name |
+| 🔢 `roll` | `IntegerField` | Student roll number |
+| 📚 `section` | `CharField(20)` | Student section |
 
-### 🔄 Data Flow
+### 🔄 Database Flow
 
-\`\`\`text
-📥 Request
-   ↓
+```text
+📥 API Request
+      │
+      ▼
+👁️ View
+      │
+      ▼
 🔄 Serializer
-   ↓
+      │
+      ▼
 ✅ Validation
-   ↓
+      │
+      ▼
 🗃️ Student Model
-   ↓
-🗄️ SQLite
-   ↓
+      │
+      ▼
+🗄️ SQLite Database
+      │
+      ▼
 📤 JSON Response
-\`\`\`
+```
 
-This model is the foundation for the current **GET, POST, PUT, PATCH and DELETE** practice.
+---
 
 ## 🌐 Current API Endpoints
 
-The current project exposes the following routes:
+> 📡 These are the routes currently implemented/documented in the project.
 
-### 👤 Get a Single Student
+### 📊 Endpoint Overview
 
-\`\`\`http
-GET /student/<id>/
-\`\`\`
+<table>
+<thead>
+<tr>
+<th>🔧 Method</th>
+<th>🔗 Endpoint</th>
+<th>🎯 Operation</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>GET</strong></td><td><code>/student/</code></td><td>👥 Get all students</td></tr>
+<tr><td><strong>GET</strong></td><td><code>/student/&lt;id&gt;/</code></td><td>👤 Get one student</td></tr>
+<tr><td><strong>POST</strong></td><td><code>/creatstudent/</code></td><td>➕ Create student</td></tr>
+<tr><td><strong>PUT</strong></td><td><code>/creatstudent/</code></td><td>✏️ Update student</td></tr>
+<tr><td><strong>PATCH</strong></td><td><code>/creatstudent/</code></td><td>🩹 Partially update student</td></tr>
+<tr><td><strong>DELETE</strong></td><td><code>/creatstudent/</code></td><td>🗑️ Delete student</td></tr>
+</tbody>
+</table>
 
-Example:
+### ➕ Create Student
 
-\`\`\`http
-GET /student/1/
-\`\`\`
-
-### 👥 Get All Students
-
-\`\`\`http
-GET /student/
-\`\`\`
-
-### ➕ Create a Student
-
-\`\`\`http
+```http
 POST /creatstudent/
-\`\`\`
+Content-Type: application/json
+```
 
-Example JSON:
+**Request body**
 
-\`\`\`json
+```json
 {
   "name": "Araf",
   "roll": 101,
   "section": "A"
 }
-\`\`\`
+```
 
-### ✏️ Update a Student
+### 👥 Read Students
 
-\`\`\`http
-PUT /creatstudent/
-\`\`\`
+```http
+GET /student/
+GET /student/<id>/
+```
 
-### 🩹 Partially Update a Student
+### ✏️ Update / 🩹 Partial Update / 🗑️ Delete
 
-\`\`\`http
-PATCH /creatstudent/
-\`\`\`
-
-### 🗑️ Delete a Student
-
-\`\`\`http
+```http
+PUT    /creatstudent/
+PATCH  /creatstudent/
 DELETE /creatstudent/
-\`\`\`
+```
 
-> **Note:** The route is currently named \`creatstudent/\` in the project. It is documented exactly as implemented so the README matches the current code.
+> 📝 **Implementation note:** The route is currently named `creatstudent/` in the project. It is documented exactly as implemented so that the README stays synchronized with the current code.
 
 ---
 
 ## 🔄 How the Current API Flow Works
 
-The current implementation follows this basic flow:
+### 🧠 Request Lifecycle
 
-\`\`\`text
-                HTTP Request
-                     │
-                     ▼
-               ┌───────────┐
-               │   urls.py │
-               └─────┬─────┘
-                     │
-                     ▼
-               ┌───────────┐
-               │  views.py │
-               └─────┬─────┘
-                     │
-          ┌──────────┴──────────┐
-          ▼                     ▼
-    ┌─────────────┐       ┌──────────────┐
-    │ serializer  │       │    models    │
-    └──────┬──────┘       └──────┬───────┘
-           │                     │
-           └──────────┬──────────┘
-                      ▼
-                ┌───────────┐
-                │  SQLite   │
-                └─────┬─────┘
-                      │
-                      ▼
-                JSON Response
-\`\`\`
+```text
+             🌐 CLIENT
+                 │
+                 │ HTTP Request
+                 ▼
+          ┌─────────────┐
+          │  🔗 urls.py │
+          └──────┬──────┘
+                 │
+                 ▼
+          ┌─────────────┐
+          │ 👁️ views.py │
+          └──────┬──────┘
+                 │
+          ┌──────┴──────┐
+          ▼             ▼
+   ┌────────────┐  ┌────────────┐
+   │ 🔄 Serializer│  │ 🗃️ Model   │
+   └──────┬─────┘  └──────┬─────┘
+          │                 │
+          └────────┬────────┘
+                   ▼
+             ┌───────────┐
+             │ 🗄️ SQLite │
+             └─────┬─────┘
+                   │
+                   ▼
+             📤 JSON Response
+                   │
+                   ▼
+              🌐 CLIENT
+```
 
-This architecture is intentionally kept simple so that the fundamentals are easy to understand before moving to more advanced Django patterns.
+### 🔁 CRUD Lifecycle
+
+```text
+➕ CREATE ──► 🗃️ Model ──► 🗄️ Database
+                                  │
+👤 READ   ◄───────────────────────┤
+                                  │
+✏️ UPDATE ────────────────────────┤
+                                  │
+🗑️ DELETE ────────────────────────┘
+```
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Technology | Role |
-|---|---|
-| 🐍 **Python** | Programming language |
-| 🟢 **Django** | Backend web framework |
-| 🔌 **Django REST Framework** | REST API and serialization |
-| 🗄️ **SQLite** | Development database |
-| 🌐 **HTTP / JSON** | API communication |
-| 🔧 **Git & GitHub** | Version control and collaboration |
+<table>
+<thead>
+<tr>
+<th>🧰 Technology</th>
+<th>🎯 Role in This Lab</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>🐍 <strong>Python</strong></td><td>Primary programming language</td></tr>
+<tr><td>🟢 <strong>Django</strong></td><td>Backend web framework</td></tr>
+<tr><td>🔌 <strong>Django REST Framework</strong></td><td>REST API and serialization practice</td></tr>
+<tr><td>🗄️ <strong>SQLite</strong></td><td>Local development database</td></tr>
+<tr><td>🌐 <strong>HTTP / JSON</strong></td><td>API communication format</td></tr>
+<tr><td>🔧 <strong>Git & GitHub</strong></td><td>Version control and repository management</td></tr>
+</tbody>
+</table>
 
 ---
 
 ## 🚀 Running the Project Locally
 
-### 1️⃣ Clone the Repository
+### 1️⃣ Clone
 
-\`\`\`bash
+```bash
 git clone https://github.com/Araf1011/Software-Engineering-Lab.git
 cd Software-Engineering-Lab
-\`\`\`
+```
 
 ### 2️⃣ Enter the Django Project
 
-\`\`\`bash
+```bash
 cd "Software Engineering"
-\`\`\`
+```
 
-### 3️⃣ Create a Virtual Environment
+### 3️⃣ Create & Activate Virtual Environment
 
-Linux/macOS:
+**Linux / macOS**
 
-\`\`\`bash
+```bash
 python3 -m venv venv
 source venv/bin/activate
-\`\`\`
+```
 
-Windows:
+**Windows**
 
-\`\`\`powershell
+```powershell
 python -m venv venv
-venv\\Scripts\\activate
-\`\`\`
+venv\Scripts\activate
+```
 
 ### 4️⃣ Install Dependencies
 
-At the moment, the project does not include a committed \`requirements.txt\`. Install the required packages manually:
+> 📦 A `requirements.txt` is not currently committed.
 
-\`\`\`bash
+```bash
 pip install django djangorestframework
-\`\`\`
+```
 
 ### 5️⃣ Apply Migrations
 
-\`\`\`bash
+```bash
 python manage.py migrate
-\`\`\`
+```
 
-### 6️⃣ Start the Development Server
+### 6️⃣ Run the Development Server
 
-\`\`\`bash
+```bash
 python manage.py runserver
-\`\`\`
+```
 
-Then open:
+Then visit:
 
-\`\`\`text
+```text
 http://127.0.0.1:8000/
-\`\`\`
+```
 
 ---
 
 ## 🧪 Useful Django Commands
 
-These are some of the commands we are using while learning Django:
-
-\`\`\`bash
-# Start a Django project
-django-admin startproject project_name
-
-# Create an application
-python manage.py startapp app_name
-
-# Create migrations
-python manage.py makemigrations
-
-# Apply migrations
-python manage.py migrate
-
-# Run the development server
-python manage.py runserver
-
-# Create an admin/superuser
-python manage.py createsuperuser
-
-# Open Django shell
-python manage.py shell
-
-# Run tests
-python manage.py test
-\`\`\`
+<table>
+<tr>
+<th>💻 Command</th>
+<th>🎯 Purpose</th>
+</tr>
+<tr><td><code>django-admin startproject project_name</code></td><td>Create a Django project</td></tr>
+<tr><td><code>python manage.py startapp app_name</code></td><td>Create a Django application</td></tr>
+<tr><td><code>python manage.py makemigrations</code></td><td>Create migration files</td></tr>
+<tr><td><code>python manage.py migrate</code></td><td>Apply migrations</td></tr>
+<tr><td><code>python manage.py runserver</code></td><td>Start development server</td></tr>
+<tr><td><code>python manage.py createsuperuser</code></td><td>Create an admin user</td></tr>
+<tr><td><code>python manage.py shell</code></td><td>Open Django shell</td></tr>
+<tr><td><code>python manage.py test</code></td><td>Run automated tests</td></tr>
+</table>
 
 ---
 
 ## 📚 Learning Method
 
-The repository follows a **learn → implement → test → improve** workflow.
+> 🔁 **Learn → Implement → Test → Debug → Improve → Commit**
 
-\`\`\`text
+```text
 📖 Learn a concept
       ↓
 ⌨️ Implement it
@@ -408,22 +514,33 @@ The repository follows a **learn → implement → test → improve** workflow.
       ↓
 🐛 Debug errors
       ↓
-🔧 Improve/refactor
+🔧 Refactor / improve
       ↓
 📌 Commit to Git
       ↓
 ➡️ Move to the next concept
-\`\`\`
+```
 
-Instead of building one huge application immediately, individual Django concepts are practiced first and then combined into larger features.
+### 🎯 Why This Approach?
+
+<table>
+<tr>
+<td>📖 <strong>Understand</strong><br><sub>Learn the concept before using it.</sub></td>
+<td>⌨️ <strong>Practice</strong><br><sub>Implement it with actual code.</sub></td>
+<td>🧪 <strong>Verify</strong><br><sub>Test and observe the result.</sub></td>
+</tr>
+<tr>
+<td>🐛 <strong>Debug</strong><br><sub>Learn from errors instead of hiding them.</sub></td>
+<td>🔧 <strong>Improve</strong><br><sub>Refactor as understanding grows.</sub></td>
+<td>📌 <strong>Document</strong><br><sub>Keep the repository as a learning record.</sub></td>
+</tr>
+</table>
 
 ---
 
 ## 🗺️ Learning Roadmap
 
-The repository will gradually move through topics such as:
-
-### ✅ Currently Practicing
+### 🟢 Foundation — Practiced
 
 - [x] Django project setup
 - [x] Django app structure
@@ -431,15 +548,15 @@ The repository will gradually move through topics such as:
 - [x] Views
 - [x] Models
 - [x] SQLite database
-- [x] Django migrations
+- [x] Migrations
 - [x] Django Admin
 - [x] Django REST Framework basics
 - [x] Serializers
 - [x] JSON requests/responses
-- [x] CRUD API concepts
-- [x] \`GET\`, \`POST\`, \`PUT\`, \`PATCH\`, \`DELETE\`
+- [x] CRUD concepts
+- [x] `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
 
-### 🔜 Upcoming Topics
+### 🟡 Next — In Progress / Upcoming
 
 - [ ] Function-based views → Class-based views
 - [ ] ModelSerializer
@@ -448,96 +565,119 @@ The repository will gradually move through topics such as:
 - [ ] Proper REST API structure
 - [ ] Authentication
 - [ ] Permissions
-- [ ] User registration/login
-- [ ] Relationships between models
+- [ ] User registration & login
 - [ ] Foreign Keys
+- [ ] Model relationships
 - [ ] Filtering & searching
 - [ ] Pagination
-- [ ] Validation
+- [ ] Advanced validation
 - [ ] Automated testing
 - [ ] API documentation
 - [ ] Frontend integration
 - [ ] Deployment
-- [ ] Production-ready project structure
 
-> The checklist is intentionally updated as the lab progresses.
+### 🔵 Future — Advanced
+
+- [ ] Production-ready project structure
+- [ ] Environment-based configuration
+- [ ] PostgreSQL
+- [ ] API versioning
+- [ ] Caching
+- [ ] Background tasks
+- [ ] CI/CD
+- [ ] Monitoring & logging
+
+> 📌 The checklist will evolve as the Software Engineering Lab progresses.
 
 ---
 
 ## 🧹 Repository Hygiene
 
-As this is an active learning repository, some generated development files may appear during local experimentation.
+### 🚫 Files That Should Not Be Committed
 
-For a cleaner production-style repository, files such as these should generally be excluded from version control:
-
-\`\`\`text
+```text
 __pycache__/
 *.pyc
 venv/
 .env
-\`\`\`
+```
 
-A future cleanup can also introduce:
+### 📦 Recommended Repository Improvements
 
-\`\`\`text
-.gitignore
-requirements.txt
-.env.example
-\`\`\`
+| File | Purpose |
+|:---|:---|
+| `.gitignore` | Prevent unnecessary/local files from being committed |
+| `requirements.txt` | Record Python dependencies |
+| `.env.example` | Document required environment variables without exposing secrets |
 
-This will make the repository easier for other students to clone and run.
+> 🧼 Keeping these files organized makes the project easier to clone, understand, and maintain.
 
 ---
 
 ## ⚠️ Development Notes
 
-This project is currently configured for **local development**, not production deployment.
+This repository is currently intended for **local development and academic learning**, not production deployment.
 
-Before deploying a Django project publicly, review security settings such as:
+### 🔐 Before Public Deployment
 
-- \`SECRET_KEY\`
-- \`DEBUG\`
-- \`ALLOWED_HOSTS\`
-- database configuration
-- CSRF configuration
-- environment variables
+Review:
 
-**Important:** Never publish a real production \`SECRET_KEY\` in a public repository. If a real secret has already been committed, it should be rotated and moved to environment variables.
+```text
+🔑 SECRET_KEY
+🐞 DEBUG
+🌐 ALLOWED_HOSTS
+🗄️ Database configuration
+🛡️ CSRF configuration
+🔐 Environment variables
+```
+
+> 🚨 **Never publish a real production `SECRET_KEY` in a public repository.** If a real secret has already been committed, rotate it and move it to environment variables.
 
 ---
 
 ## 🎯 Purpose of This Repository
 
-The main purpose of this repository is to keep a **living record of our Software Engineering Lab journey**.
+This repository is designed to become a **living record of our Software Engineering Lab journey**.
 
-It serves as:
+<table>
+<tr>
+<td align="center">📓<br><strong>Learning Log</strong></td>
+<td align="center">🧪<br><strong>Experiments</strong></td>
+<td align="center">💻<br><strong>Django Practice</strong></td>
+<td align="center">📚<br><strong>Reference</strong></td>
+</tr>
+<tr>
+<td align="center">🐛<br><strong>Debugging</strong></td>
+<td align="center">🔄<br><strong>Implementation</strong></td>
+<td align="center">🚀<br><strong>Growth</strong></td>
+<td align="center">🧭<br><strong>Future Projects</strong></td>
+</tr>
+</table>
 
-- 📓 A personal learning log
-- 🧪 A place for lab experiments
-- 💻 A Django practice repository
-- 📚 A reference for future topics
-- 🔍 A record of implementation and debugging
-- 🚀 A foundation for larger Django projects
+The code may start simple — **that's intentional**.
 
-The code may start simple — that's intentional.
-
-The idea is to look back later and see how the project evolved from basic Django concepts into more complete backend applications.
+The purpose is to be able to look back later and see the progression from basic Django concepts to complete backend applications.
 
 ---
 
 ## 👨‍💻 Author
 
-**MD Al Araf Hossain**
-
-Computer Science & Engineering Student  
-International Islamic University Chittagong
-
-- GitHub: [@Araf1011](https://github.com/Araf1011)
+<p align="center">
+  <b>MD Al Araf Hossain</b>
+  <br>
+  Computer Science & Engineering Student
+  <br>
+  International Islamic University Chittagong
+  <br><br>
+  <a href="https://github.com/Araf1011">
+    <img src="https://img.shields.io/badge/GitHub-Araf1011-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+  </a>
+</p>
 
 ---
 
 <p align="center">
-  <b>Learning Django one endpoint at a time 🚀</b>
+  <b>🚀 Learning Django — one concept, one endpoint, one bug at a time.</b>
   <br>
-  <sub>Built for learning • Experimenting • Improving</sub>
+  <sub>Built for learning • Experimenting • Debugging • Improving</sub>
 </p>
